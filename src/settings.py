@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'src.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mariadb', # change to mysql if crash james
+        'ENGINE': 'django.db.backends.mysql', # change to mysql if crash james
         'NAME': 'goodfood_order_database',
         'USER': 'root',
         'PASSWORD': 'root',

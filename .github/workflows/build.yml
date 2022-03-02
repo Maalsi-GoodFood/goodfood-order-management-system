@@ -5,6 +5,18 @@ jobs:
     name: build
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_USER: user
+          MYSQL_PASSWORD: root
+          MYSQL_DATABASE: goodfood_order_database
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
+
     strategy:
       matrix:
         python-version: [ 3.x ]

@@ -5,11 +5,6 @@ jobs:
     name: build
     runs-on: ubuntu-latest
 
-    env:
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_DATABASE: goodfood_order_database
-
     strategy:
       matrix:
         python-version: [ 3.x ]
@@ -17,11 +12,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Set up MySQL
-        run: |
-          sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE ${{ env.MYSQL_DATABASE }};' -u${{ env.MYSQL_USER }} -p${{ env.MYSQL_PASSWORD }} -h127.0.0.1
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v1

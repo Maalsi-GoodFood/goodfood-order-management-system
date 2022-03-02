@@ -14,8 +14,8 @@ jobs:
           MYSQL_DATABASE: goodfood_order_database
           MYSQL_ROOT_PASSWORD: root
         ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+          - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
 
     strategy:
       matrix:

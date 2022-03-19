@@ -1,0 +1,30 @@
+services:
+    database:
+        image: mariadb
+        container_name: order_database_container
+        restart: always
+        environment:
+            - MYSQL_USER=root
+            - MYSQL_PASSWORD=root
+            - MYSQL_DATABASE=tgv_springboot_database
+            - MYSQL_ROOT_PASSWORD=root
+
+        ports:
+            - '3306:3306'
+        volumes:
+            - order_springboot_database:/var/lib/mysql/
+
+    database_administration:
+        depends_on:
+            - database
+        image: phpmyadmin/phpmyadmin
+        container_name: order_phpmyadmin_container
+        restart: always
+        ports:
+            - '8081:80'
+        environment:
+            PMA_HOST: database
+            PMA_USER: root
+            PMA_PASSWORD: root
+volumes:
+    order_springboot_database:

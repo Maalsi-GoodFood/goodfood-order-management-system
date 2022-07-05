@@ -13,14 +13,18 @@ pipeline {
     stages {
         stage('DOCKER-BUILD') {
             steps {
-                dockerImage = docker.build(TARGET_IMAGE_NAME)
+                script {
+                    dockerImage = docker.build(TARGET_IMAGE_NAME)
+                }
             }
         }
         stage('DOCKER-PUSH') {
             steps {
-                docker.withCredentials(''+REGISTRY_LINK, ''+REGISTRY);
-                docker.push(''+${BUILD_NUMBER})
-                docker.push('latest');
+                script {
+                    docker.withCredentials(''+REGISTRY_LINK, ''+REGISTRY);
+                    docker.push(''+${BUILD_NUMBER})
+                    docker.push('latest');
+                }
             }
         }
     }

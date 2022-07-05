@@ -8,21 +8,21 @@ pipeline {
     }
 
     agent {
-        docker { image BUILD_ENV_IMAGE }
+        docker { image env.BUILD_ENV_IMAGE }
     }
     stages {
         stage('DOCKER-BUILD') {
             steps {
                 script {
-                    dockerImage = docker.build(TARGET_IMAGE_NAME)
+                    dockerImage = docker.build(env.TARGET_IMAGE_NAME)
                 }
             }
         }
         stage('DOCKER-PUSH') {
             steps {
                 script {
-                    docker.withCredentials(''+REGISTRY_LINK, ''+REGISTRY);
-                    dockerImage.push(''+${BUILD_NUMBER})
+                    docker.withCredentials(''+env.REGISTRY_LINK, ''+env.REGISTRY);
+                    dockerImage.push(''+${env.BUILD_NUMBER})
                     dockerImage.push('latest');
                 }
             }

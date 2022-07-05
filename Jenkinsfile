@@ -8,7 +8,7 @@ pipeline {
     }
 
     agent {
-        docker { image "${BUILD_ENV_IMAGE}" }
+        docker { image ${BUILD_ENV_IMAGE} }
     }
     stages {
         stage('DOCKER-BUILD') {

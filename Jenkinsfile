@@ -35,8 +35,7 @@ pipeline {
                     docker.withRegistry('', ''+REGISTRY_CREDENTIALS) {
                         dockerImage.push(''+BUILD_NUMBER)
                         dockerImage.push('latest')
-                    })
-
+                    }
                 }
             }
         }    

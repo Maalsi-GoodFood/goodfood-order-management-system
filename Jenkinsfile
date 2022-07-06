@@ -3,8 +3,8 @@ pipeline {
     environment {
         REGISTRY_CREDENTIALS = 'dockerhub'
         REGISTRY_LINK = 'https://hub.docker.com'
-        REGISTRY_NAME = 'registry/';
-        TARGET_IMAGE_NAME = 'order'
+        REGISTRY_NAME = 'cesigoodfood/';
+        TARGET_IMAGE_NAME = 'registry'
     }
 
     agent none

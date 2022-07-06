@@ -3,8 +3,8 @@ pipeline {
     environment {
         REGISTRY_CREDENTIALS = 'dockerhub'
         REGISTRY_LINK = 'https://hub.docker.com'
-        REGISTRY_NAME = 'cesigoodfood/';
-        TARGET_IMAGE_NAME = 'registry'
+        USERNAME = 'cesigoodfood';
+        REGISTRY_NAME = 'registry'
     }
 
     agent none
@@ -24,7 +24,7 @@ pipeline {
             agent any
             steps {
                 script {
-                    dockerImage = docker.build('' + REGISTRY_NAME + TARGET_IMAGE_NAME)
+                    dockerImage = docker.build('' + USERNAME + '/' + REGISTRY_NAME)
                 }
             }
         }
@@ -32,12 +32,18 @@ pipeline {
             agent any
             steps {
                 script {
-                    docker.withRegistry('', ''+REGISTRY_CREDENTIALS, {
+                    docker.withRegistry('', ''+REGISTRY_CREDENTIALS) {
                         dockerImage.push(''+BUILD_NUMBER)
                         dockerImage.push('latest')
                     })
 
                 }
+            }
+        }    
+        stage('Remove Unused docker image') {
+            agent any
+            steps{
+                sh "docker rmi $USERNAME/$REGISTRY_NAME:$BUILD_NUMBER"
             }
         }
     }

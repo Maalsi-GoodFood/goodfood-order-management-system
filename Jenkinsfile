@@ -32,9 +32,11 @@ pipeline {
             agent any
             steps {
                 script {
-                    docker.withRegistry(''+REGISTRY_LINK, ''+REGISTRY_CREDENTIALS)
-                    dockerImage.push(''+${BUILD_NUMBER})
-                    dockerImage.push('latest')
+                    docker.withRegistry(''+REGISTRY_LINK, ''+REGISTRY_CREDENTIALS, {
+                        dockerImage.push(''+${BUILD_NUMBER})
+                        dockerImage.push('latest')
+                    })
+
                 }
             }
         }

@@ -1,9 +1,10 @@
 pipeline {
 
     environment {
+        REGISTRY_CREDENTIALS = 'dockerhub'
+        REGISTRY_LINK = 'https://hub.docker.com'
+        REGISTRY_NAME = 'registry/';
         TARGET_IMAGE_NAME = 'order'
-        REGISTRY = "dockerhub"
-        REGISTRY_LINK = 'https://hub.docker.com/'
     }
 
     agent none
@@ -23,7 +24,7 @@ pipeline {
             agent any
             steps {
                 script {
-                    dockerImage = docker.build(TARGET_IMAGE_NAME)
+                    dockerImage = docker.build('' + REGISTRY_NAME + TARGET_IMAGE_NAME)
                 }
             }
         }

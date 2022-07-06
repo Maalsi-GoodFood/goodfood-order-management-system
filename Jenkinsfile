@@ -7,7 +7,7 @@ pipeline {
         REGISTRY_NAME = 'registry'
     }
 
-    agent none
+    agent any
 
     stages {
         stage('TESTS') {
@@ -21,7 +21,6 @@ pipeline {
             }
         }
         stage('DOCKER-BUILD') {
-            agent any
             steps {
                 script {
                     dockerImage = docker.build('' + USERNAME + '/' + REGISTRY_NAME)
@@ -29,7 +28,6 @@ pipeline {
             }
         }
         stage('DOCKER-PUSH') {
-            agent any
             steps {
                 script {
                     docker.withRegistry('', ''+REGISTRY_CREDENTIALS) {
@@ -40,7 +38,6 @@ pipeline {
             }
         }    
         stage('Remove Unused docker image') {
-            agent any
             steps{
                 sh "docker rmi $USERNAME/$REGISTRY_NAME:$BUILD_NUMBER"
             }

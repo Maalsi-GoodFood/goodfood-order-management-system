@@ -37,7 +37,7 @@ pipeline {
                 }
             }
         }    
-        stage('Remove Unused docker image') {
+        stage('REMOVE LOCAL IMAGE') {
             steps{
                 sh "docker rmi $USERNAME/$REGISTRY_NAME:$BUILD_NUMBER"
             }

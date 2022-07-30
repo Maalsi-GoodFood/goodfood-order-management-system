@@ -1,7 +1,7 @@
 services:
     database:
         image: mariadb
-        container_name: order_database_container
+        container_name: order_database_container_2
         restart: always
         environment:
             - MYSQL_USER=root
@@ -18,7 +18,7 @@ services:
         depends_on:
             - database
         image: phpmyadmin/phpmyadmin
-        container_name: order_phpmyadmin_container
+        container_name: order_phpmyadmin_container_2
         restart: always
         ports:
             - '8081:80'

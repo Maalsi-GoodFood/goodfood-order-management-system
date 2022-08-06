@@ -6,7 +6,7 @@ services:
         environment:
             - MYSQL_USER=root
             - MYSQL_PASSWORD=root
-            - MYSQL_DATABASE=tgv_springboot_database
+            - MYSQL_DATABASE=order_springboot_database
             - MYSQL_ROOT_PASSWORD=root
 
         ports:

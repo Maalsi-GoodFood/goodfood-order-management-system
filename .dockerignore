@@ -1,0 +1,6 @@
+HELP.md
+README.md
+Jenkinsfile
+.gitignore
+.github
+docker-compose.yaml
